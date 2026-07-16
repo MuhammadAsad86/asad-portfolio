@@ -28,7 +28,17 @@ export default function Navbar() {
 
   const scrollTo = (id) => {
     setOpen(false);
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+
+    setTimeout(() => {
+      const element = document.getElementById(id);
+
+      if (element) {
+        element.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+    }, 200);
   };
 
   return (
@@ -36,14 +46,10 @@ export default function Navbar() {
       initial={{ y: -24, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-        scrolled ? "py-3" : "py-6"
-      }`}
+      className="fixed top-0 left-0 right-0 z-40 py-3 transition-all duration-300"
     >
       <nav
-        className={`section-container flex items-center justify-between rounded-2xl px-5 transition-all duration-300 ${
-          scrolled ? "surface-nav py-2.5" : "py-3"
-        }`}
+        className="section-container surface-nav flex items-center justify-between rounded-2xl px-5 py-2.5 transition-all duration-300"
         aria-label="Primary"
       >
         <button
@@ -60,9 +66,8 @@ export default function Navbar() {
               <button
                 onClick={() => scrollTo(link.id)}
                 aria-current={active === link.id ? "true" : undefined}
-                className={`relative z-10 px-4 py-2 rounded-lg transition-colors ${
-                  active === link.id ? "text-primary" : "text-muted hover:text-text"
-                }`}
+                className={`relative z-10 px-4 py-2 rounded-lg transition-colors ${active === link.id ? "text-primary" : "text-muted hover:text-text"
+                  }`}
               >
                 {link.label}
               </button>
@@ -115,10 +120,12 @@ export default function Navbar() {
               {links.map((link) => (
                 <li key={link.id}>
                   <button
-                    onClick={() => scrollTo(link.id)}
-                    className={`w-full text-left px-4 py-3 rounded-lg ${
-                      active === link.id ? "text-primary bg-primary/10" : "text-muted"
-                    }`}
+                    onClick={() => {
+                      console.log("Clicked:", link.id);
+                      scrollTo(link.id);
+                    }}
+                    className={`w-full text-left px-4 py-3 rounded-lg ${active === link.id ? "text-primary bg-primary/10" : "text-muted"
+                      }`}
                   >
                     {link.label}
                   </button>
