@@ -1,0 +1,168 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  /* Premium modern dark theme */
+  --color-bg: #0B1120;
+  --color-surface: #111827;
+  --color-card: #1E293B;
+  --color-primary: #4F8CFF;
+  --color-secondary: #22D3EE;
+  --color-accent: #A855F7;
+  --color-text: #F8FAFC;
+  --color-muted: #94A3B8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+html.light body {
+  background-color: #F9FAFB;
+  color: #0F172A;
+}
+
+html.light .surface-card {
+  background: #FFFFFF;
+  border-color: rgba(15, 23, 42, 0.08);
+}
+
+html.light .surface-nav {
+  background: rgba(255, 255, 255, 0.78);
+  border-color: rgba(15, 23, 42, 0.08);
+}
+
+html.light .text-muted {
+  color: #64748B;
+}
+
+html.light .text-text {
+  color: #0F172A;
+}
+
+html.light .border-white\/10,
+html.light .border-white\/\[0\.08\] {
+  border-color: rgba(15, 23, 42, 0.08);
+}
+
+html.light .bg-white\/5 {
+  background-color: rgba(15, 23, 42, 0.04);
+}
+
+::selection {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+::-webkit-scrollbar {
+  width: 9px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-card);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+}
+
+/* Custom cursor: hide native cursor only where our cursor is active */
+/* Default browser cursor everywhere — normal pointer on interactive elements */
+a,
+button,
+[role="button"],
+input[type="submit"],
+label[for],
+select,
+.cursor-pointer {
+  cursor: pointer;
+}
+button:disabled,
+[aria-disabled="true"] {
+  cursor: not-allowed;
+}
+
+/* Restrained surface style — solid, elevated, minimal blur.
+   Used sparingly: nav, cards, modals. Not stacked on every element. */
+.surface-card {
+  background: var(--color-card);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.35);
+}
+
+.surface-nav {
+  background: rgba(10, 10, 10, 0.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.section-container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+@keyframes blink-caret {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.typing-caret {
+  animation: blink-caret 0.9s step-end infinite;
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+.animated-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 12s ease infinite;
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  50% { transform: translateY(-24px) translateX(14px); }
+}
+.float-shape {
+  animation: float-slow 9s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-secondary);
+  outline-offset: 3px;
+}
