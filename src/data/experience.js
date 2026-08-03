@@ -5,7 +5,7 @@ export const timeline = [
     org: "Software House",
     date: "Internship",
     description:
-      "Collaborated in a professional software house environment — managed digital assets efficiently and supported cross-functional operational workflows.",
+      "Worked alongside developers in a professional software house, supporting web projects and gaining exposure to real world software development workflows.",
   },
   {
     type: "training",
@@ -39,7 +39,7 @@ export const certificates = [
 ];
 
 export const stats = [
-  { label: "Projects Built", value: 3 },
+  { label: "Projects Built", value: 6 },
   { label: "Months of Training", value: 3 },
   { label: "Core Technologies", value: 8 },
   { label: "Semester", value: 6 },

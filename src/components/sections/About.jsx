@@ -4,6 +4,7 @@ import SectionHeading from "../ui/SectionHeading";
 import { stats } from "../../data/experience";
 import { useCountUp } from "../../hooks/useCountUp";
 
+
 function Stat({ label, value }) {
   const { ref, value: count } = useCountUp(value);
   return (

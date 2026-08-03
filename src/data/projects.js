@@ -1,6 +1,10 @@
+// Manual overrides / enrichment for repos where GitHub's API data alone
+// isn't descriptive enough (features, curated tech list, etc).
+// Keyed implicitly by the repo name parsed from `github` at merge time
+// in Projects.jsx — GitHub data always wins for live fields (url, homepage,
+// language, topics, updated_at); these values are used as fallbacks/enrichment.
 export const projects = [
   {
-    id: "mern-blog",
     title: "MERN Blog Application",
     category: "Full Stack",
     description:
@@ -16,22 +20,62 @@ export const projects = [
     live: "",
   },
   {
-    id: "amazon-clone",
-    title: "Amazon Clone",
-    category: "Frontend",
+    title: "E-commerce Web Application",
+    category: "Full Stack",
     description:
-      "A responsive, Amazon-inspired front-end interface rebuilding key browsing, product and cart UI patterns using vanilla JavaScript.",
+      "A full-stack e-commerce platform with product catalog, cart, and checkout flows built on the MERN stack.",
     features: [
-      "Responsive product grid & detail views",
-      "Cart interactions built with vanilla JS",
-      "Pixel-focused UI replication",
+      "Product listing, filtering and search",
+      "Cart & checkout flow",
+      "REST API backed by MongoDB",
     ],
-    tech: ["HTML5", "CSS3", "JavaScript"],
-    github: "https://github.com/MuhammadAsad86/Amazon-Clone",
+    tech: ["React", "Node.js", "Express", "MongoDB"],
+    github: "https://github.com/MuhammadAsad86/ecommerce-web-application-",
     live: "",
   },
   {
-    id: "meezan-bank-page",
+    title: "Asad Portfolio",
+    category: "Frontend",
+    description:
+      "This personal portfolio site — built with React, Tailwind CSS and Framer Motion for smooth, animated interactions.",
+    features: [
+      "Animated project cards with 3D tilt",
+      "Live GitHub repository integration",
+      "Fully responsive layout",
+    ],
+    tech: ["React", "Tailwind CSS", "Framer Motion"],
+    github: "https://github.com/MuhammadAsad86/asad-portfolio",
+    live: "",
+  },
+  {
+    title: "Responsive Corporate Website",
+    category: "Frontend",
+    description:
+      "A fully responsive corporate business website with clean, modern sectioned layouts across every breakpoint.",
+    features: [
+      "Multi-section responsive layout",
+      "Cross-device breakpoint testing",
+      "Semantic, accessible markup",
+    ],
+    tech: ["HTML5", "CSS3", "JavaScript"],
+    github: "https://github.com/MuhammadAsad86/responsive-corporate-website",
+    live: "",
+  },
+  {
+    title: "Binary Converter Calculator",
+    category: "Frontend",
+    description:
+      "A utility web app for converting between binary, decimal, hexadecimal and octal number systems in real time.",
+    features: [
+      "Real-time number system conversion",
+      "Input validation & error handling",
+      "Lightweight, dependency-free UI",
+    ],
+    tech: ["HTML5", "CSS3", "JavaScript"],
+    github: "https://github.com/MuhammadAsad86/binary-converter-calculator",
+    live: "",
+  },
+  {
     title: "Meezan Bank Landing Page",
     category: "Frontend",
     description:
@@ -43,6 +87,20 @@ export const projects = [
     ],
     tech: ["Tailwind CSS", "HTML5", "Responsive Design"],
     github: "https://github.com/MuhammadAsad86/MEEZAN-BANK-PAGE",
+    live: "",
+  },
+  {
+    title: "Amazon Clone",
+    category: "Frontend",
+    description:
+      "A responsive, Amazon-inspired front-end interface rebuilding key browsing, product and cart UI patterns using vanilla JavaScript.",
+    features: [
+      "Responsive product grid & detail views",
+      "Cart interactions built with vanilla JS",
+      "Pixel-focused UI replication",
+    ],
+    tech: ["HTML5", "CSS3", "JavaScript"],
+    github: "https://github.com/MuhammadAsad86/Amazon-Clone",
     live: "",
   },
 ];

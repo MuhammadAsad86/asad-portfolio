@@ -110,17 +110,19 @@ export default function Hero() {
               style={{ background: "linear-gradient(135deg,#4F8CFF,#22D3EE)" }}
             >
               Hire Me
-              <FiArrowRight size={15} aria-hidden="true" />
+              <FiArrowRight size={15} />
             </motion.button>
+
             <motion.a
               href="/Muhammad_Asad_CV.pdf"
-              download
+              target="_blank"
+              rel="noopener noreferrer"
               whileHover={{ y: -2 }}
               whileTap={{ y: 0 }}
               transition={{ duration: 0.2 }}
-              className="px-7 py-3.5 rounded-xl font-semibold text-sm border border-white/15 hover:border-primary/60 transition-colors flex items-center gap-2"
+              className="px-7 py-3.5 rounded-xl font-semibold text-sm border border-white/15 hover:border-primary/60 hover:bg-primary/10 transition-colors flex items-center gap-2"
             >
-              <FiDownload aria-hidden="true" /> Download CV
+              👁 View CV
             </motion.a>
           </motion.div>
 
