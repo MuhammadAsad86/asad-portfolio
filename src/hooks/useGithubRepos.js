@@ -15,29 +15,41 @@ export default function useGithubRepos() {
     setError(null);
 
     try {
+      const token = import.meta.env.VITE_GITHUB_TOKEN;
+
       const headers = {
         Accept: "application/vnd.github+json",
       };
 
-      const token = import.meta.env.VITE_GITHUB_TOKEN;
-
-      if (token) {
-        headers.Authorization = `Bearer ${token}`;
+      if (token && token.trim()) {
+        headers.Authorization = `Bearer ${token.trim()}`;
       }
 
       const res = await fetch(GITHUB_API_URL, {
         headers,
       });
 
+      const data = await res.json();
+
       if (!res.ok) {
+        console.error("GitHub API error:", data);
+
+        if (res.status === 401) {
+          throw new Error("GitHub token is invalid or expired.");
+        }
+
+        if (res.status === 403) {
+          throw new Error(
+            data?.message ||
+              "GitHub API rate limit exceeded or access was denied."
+          );
+        }
+
         throw new Error(
-          res.status === 403
-            ? "GitHub API rate limit exceeded. Please try again later."
-            : `GitHub API responded with status ${res.status}.`
+          data?.message ||
+            `GitHub API responded with status ${res.status}.`
         );
       }
-
-      const data = await res.json();
 
       if (!Array.isArray(data)) {
         throw new Error(
@@ -48,7 +60,11 @@ export default function useGithubRepos() {
       setRepos(data);
     } catch (err) {
       console.error("Failed to fetch GitHub repositories:", err);
-      setError(err.message || "Failed to load repositories from GitHub.");
+
+      setError(
+        err.message || "Failed to load repositories from GitHub."
+      );
+
       setRepos([]);
     } finally {
       setLoading(false);

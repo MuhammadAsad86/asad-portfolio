@@ -59,24 +59,7 @@ export default function About() {
       <div className="section-container">
         <SectionHeading eyebrow="01 · About" title="A little about my journey" headingId="about-heading" />
 
-        <div className="grid lg:grid-cols-[0.9fr_1.1fr] gap-14 items-start">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="relative"
-          >
-            <div className="surface-card rounded-3xl p-3 max-w-sm">
-              <img
-                src="/images/profile.png"
-                alt="Muhammad Asad working at his desk"
-                className="rounded-2xl w-full h-auto object-cover"
-                loading="lazy"
-              />
-            </div>
-          </motion.div>
-
+        <div className="max-w-2xl mx-auto text-center">
           <div>
             <motion.p
               initial={{ opacity: 0, y: 16 }}
