@@ -1,8 +1,10 @@
-// Manual overrides / enrichment for repos where GitHub's API data alone
-// isn't descriptive enough (features, curated tech list, etc).
-// Keyed implicitly by the repo name parsed from `github` at merge time
-// in Projects.jsx — GitHub data always wins for live fields (url, homepage,
-// language, topics, updated_at); these values are used as fallbacks/enrichment.
+// Manual overrides / enrichment for repositories where GitHub's API data alone
+// isn't descriptive enough, such as features, curated tech lists, and categories.
+//
+// These records are matched by repository name parsed from the `github` URL
+// inside Projects.jsx. GitHub API data always wins for live fields such as
+// url, homepage, language, topics, and updated_at.
+
 export const projects = [
   {
     title: "MERN Blog Application",
@@ -19,6 +21,7 @@ export const projects = [
     github: "https://github.com/MuhammadAsad86/mern-blog",
     live: "",
   },
+
   {
     title: "E-commerce Web Application",
     category: "Full Stack",
@@ -33,11 +36,12 @@ export const projects = [
     github: "https://github.com/MuhammadAsad86/ecommerce-web-application-",
     live: "",
   },
+
   {
     title: "Asad Portfolio",
     category: "Frontend",
     description:
-      "This personal portfolio site — built with React, Tailwind CSS and Framer Motion for smooth, animated interactions.",
+      "This personal portfolio site is built with React, Tailwind CSS and Framer Motion for smooth, animated interactions.",
     features: [
       "Animated project cards with 3D tilt",
       "Live GitHub repository integration",
@@ -47,6 +51,7 @@ export const projects = [
     github: "https://github.com/MuhammadAsad86/asad-portfolio",
     live: "",
   },
+
   {
     title: "Responsive Corporate Website",
     category: "Frontend",
@@ -61,6 +66,7 @@ export const projects = [
     github: "https://github.com/MuhammadAsad86/responsive-corporate-website",
     live: "",
   },
+
   {
     title: "Binary Converter Calculator",
     category: "Frontend",
@@ -72,9 +78,11 @@ export const projects = [
       "Lightweight, dependency-free UI",
     ],
     tech: ["HTML5", "CSS3", "JavaScript"],
-    github: "https://github.com/MuhammadAsad86/binary-converter-calculator",
+    github:
+      "https://github.com/MuhammadAsad86/binary-converter-calculator",
     live: "",
   },
+
   {
     title: "Meezan Bank Landing Page",
     category: "Frontend",
@@ -89,6 +97,7 @@ export const projects = [
     github: "https://github.com/MuhammadAsad86/MEEZAN-BANK-PAGE",
     live: "",
   },
+
   {
     title: "Amazon Clone",
     category: "Frontend",
@@ -96,7 +105,7 @@ export const projects = [
       "A responsive, Amazon-inspired front-end interface rebuilding key browsing, product and cart UI patterns using vanilla JavaScript.",
     features: [
       "Responsive product grid & detail views",
-      "Cart interactions built with vanilla JS",
+      "Cart interactions built with vanilla JavaScript",
       "Pixel-focused UI replication",
     ],
     tech: ["HTML5", "CSS3", "JavaScript"],
@@ -105,4 +114,8 @@ export const projects = [
   },
 ];
 
-export const projectCategories = ["All", "Full Stack", "Frontend"];
+export const projectCategories = [
+  "All",
+  "Full Stack",
+  "Frontend",
+];
