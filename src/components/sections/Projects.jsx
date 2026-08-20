@@ -26,18 +26,18 @@ const ProjectCard = memo(function ProjectCard({ project, index }) {
   const mouseY = useMotionValue(0);
 
   const rotateX = useSpring(
-    useTransform(mouseY, [-0.5, 0.5], [3, -3]),
+    useTransform(mouseY, [-0.5, 0.5], [4, -4]),
     {
       stiffness: 180,
-      damping: 22,
+      damping: 20,
     }
   );
 
   const rotateY = useSpring(
-    useTransform(mouseX, [-0.5, 0.5], [-3, 3]),
+    useTransform(mouseX, [-0.5, 0.5], [-4, 4]),
     {
       stiffness: 180,
-      damping: 22,
+      damping: 20,
     }
   );
 
@@ -71,6 +71,7 @@ const ProjectCard = memo(function ProjectCard({ project, index }) {
 
   const handleMouseLeave = () => {
     setHovered(false);
+
     mouseX.set(0);
     mouseY.set(0);
   };
@@ -80,19 +81,22 @@ const ProjectCard = memo(function ProjectCard({ project, index }) {
       ref={cardRef}
       initial={{
         opacity: 0,
-        y: 35,
+        y: 40,
+        scale: 0.96,
       }}
       whileInView={{
         opacity: 1,
         y: 0,
+        scale: 1,
       }}
       viewport={{
         once: true,
-        amount: 0.2,
+        amount: 0.18,
       }}
       transition={{
-        duration: 0.5,
+        duration: 0.55,
         delay: index * 0.08,
+        ease: [0.22, 1, 0.36, 1],
       }}
       whileHover={{
         y: -8,
@@ -103,6 +107,7 @@ const ProjectCard = memo(function ProjectCard({ project, index }) {
               rotateX,
               rotateY,
               transformPerspective: 1200,
+              transformStyle: "preserve-3d",
             }
           : undefined
       }

@@ -15,6 +15,34 @@ const icons = {
   education: FiBookOpen,
 };
 
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.18,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: {
+    opacity: 0,
+    y: 45,
+    rotateX: 8,
+    scale: 0.97,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    rotateX: 0,
+    scale: 1,
+    transition: {
+      duration: 0.65,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
+
 export default function Experience() {
   return (
     <section
@@ -30,29 +58,30 @@ export default function Experience() {
           subtitle="Internship, training and education, the path that shaped how I build."
         />
 
-        <ol className="relative flex list-none flex-col gap-14 border-l-2 border-white/10 pl-8">
-          {timeline.map((item, i) => {
+        <motion.ol
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{
+            once: false,
+            amount: 0.25,
+          }}
+          className="relative flex list-none flex-col gap-14 border-l-2 border-white/10 pl-8"
+          style={{
+            perspective: 1200,
+          }}
+        >
+          {timeline.map((item) => {
             const Icon = icons[item.type] || FiBriefcase;
 
             return (
               <motion.li
                 key={item.title}
-                initial={{
-                  opacity: 0,
-                  x: -20,
-                }}
-                whileInView={{
-                  opacity: 1,
-                  x: 0,
-                }}
-                viewport={{
-                  once: true,
-                }}
-                transition={{
-                  duration: 0.5,
-                  delay: i * 0.1,
-                }}
+                variants={itemVariants}
                 className="relative"
+                style={{
+                  transformStyle: "preserve-3d",
+                }}
               >
                 <span
                   aria-hidden="true"
@@ -70,7 +99,12 @@ export default function Experience() {
 
                 <motion.div
                   whileHover={{
-                    y: -4,
+                    y: -5,
+                    rotateX: 2,
+                    rotateY: -1,
+                    transition: {
+                      duration: 0.25,
+                    },
                   }}
                   className="surface-card rounded-2xl p-6 transition-shadow hover:shadow-lg hover:shadow-primary/10"
                 >
@@ -93,7 +127,7 @@ export default function Experience() {
               </motion.li>
             );
           })}
-        </ol>
+        </motion.ol>
 
         <GithubStats />
       </div>

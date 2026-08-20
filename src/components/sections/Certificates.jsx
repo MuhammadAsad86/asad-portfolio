@@ -4,6 +4,34 @@ import { FiExternalLink } from "react-icons/fi";
 import SectionHeading from "../ui/SectionHeading";
 import { certificates } from "../../data/experience";
 
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.18,
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: {
+    opacity: 0,
+    y: 45,
+    rotateX: 8,
+    scale: 0.96,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    rotateX: 0,
+    scale: 1,
+    transition: {
+      duration: 0.65,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
+
 export default function Certificates() {
   const getCertificateLink = (cert) => {
     if (cert.title === "Full Stack Web Internship") {
@@ -51,8 +79,20 @@ export default function Certificates() {
           subtitle="Formal training and certifications that support my hands-on development experience."
         />
 
-        <div className="grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
-          {certificates.map((cert, i) => {
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{
+            once: false,
+            amount: 0.3,
+          }}
+          className="grid gap-7 sm:grid-cols-2 lg:grid-cols-3"
+          style={{
+            perspective: 1200,
+          }}
+        >
+          {certificates.map((cert) => {
             const certificateLink = getCertificateLink(cert);
             const certificateImage = getCertificateImage(cert);
             const pdfPreview = isPdfPreview(cert);
@@ -60,18 +100,19 @@ export default function Certificates() {
             return (
               <motion.article
                 key={cert.title}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{
-                  once: true,
-                  amount: 0.2,
+                variants={cardVariants}
+                whileHover={{
+                  y: -7,
+                  rotateX: 2,
+                  rotateY: -2,
+                  transition: {
+                    duration: 0.25,
+                  },
                 }}
-                transition={{
-                  duration: 0.5,
-                  delay: i * 0.1,
-                }}
-                whileHover={{ y: -6 }}
                 className="surface-card group flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 shadow-lg shadow-black/10 transition-all duration-300 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/10"
+                style={{
+                  transformStyle: "preserve-3d",
+                }}
               >
                 {/* Certificate Preview */}
                 {certificateLink ? (
@@ -155,7 +196,7 @@ export default function Certificates() {
               </motion.article>
             );
           })}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
