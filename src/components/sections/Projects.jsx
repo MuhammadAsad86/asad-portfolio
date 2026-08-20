@@ -21,6 +21,7 @@ const ProjectCard = memo(function ProjectCard({ project, index }) {
 
   const [hovered, setHovered] = useState(false);
   const [tiltEnabled, setTiltEnabled] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
 
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -53,6 +54,41 @@ const ProjectCard = memo(function ProjectCard({ project, index }) {
     }
   }, []);
 
+  /* Detect only downward scrolling */
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const scrollingDown = currentScrollY > lastScrollY;
+
+      if (
+        scrollingDown &&
+        cardRef.current
+      ) {
+        const rect = cardRef.current.getBoundingClientRect();
+
+        const isEnteringViewport =
+          rect.top < window.innerHeight * 0.85 &&
+          rect.bottom > 0;
+
+        if (isEnteringViewport) {
+          setIsVisible(true);
+        }
+      }
+
+      lastScrollY = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll, {
+      passive: true,
+    });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   const handleMouseMove = (event) => {
     if (!tiltEnabled || !cardRef.current) return;
 
@@ -81,21 +117,25 @@ const ProjectCard = memo(function ProjectCard({ project, index }) {
       ref={cardRef}
       initial={{
         opacity: 0,
-        y: 40,
+        y: 55,
         scale: 0.96,
       }}
-      whileInView={{
-        opacity: 1,
-        y: 0,
-        scale: 1,
-      }}
-      viewport={{
-        once: true,
-        amount: 0.18,
-      }}
+      animate={
+        isVisible
+          ? {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+            }
+          : {
+              opacity: 0,
+              y: 55,
+              scale: 0.96,
+            }
+      }
       transition={{
-        duration: 0.55,
-        delay: index * 0.08,
+        duration: 0.65,
+        delay: index * 0.18,
         ease: [0.22, 1, 0.36, 1],
       }}
       whileHover={{
@@ -169,8 +209,6 @@ const ProjectCard = memo(function ProjectCard({ project, index }) {
       {/* CARD CONTENT */}
 
       <div className="flex flex-1 flex-col px-5 pb-4 pt-3">
-        {/* TITLE */}
-
         <div className="flex items-start justify-between gap-3">
           <div>
             <p className="mb-1 font-mono text-[8px] uppercase tracking-[0.16em] text-primary/60">
@@ -187,13 +225,9 @@ const ProjectCard = memo(function ProjectCard({ project, index }) {
           </span>
         </div>
 
-        {/* DESCRIPTION */}
-
         <p className="mt-2 text-[13px] leading-5 text-muted">
           {project.description}
         </p>
-
-        {/* FEATURES */}
 
         <div className="mt-3">
           <div className="grid gap-1.5">
@@ -209,8 +243,6 @@ const ProjectCard = memo(function ProjectCard({ project, index }) {
             ))}
           </div>
         </div>
-
-        {/* CARD FOOTER */}
 
         <div className="mt-auto pt-4">
           {/* TECH STACK */}
