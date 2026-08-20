@@ -7,17 +7,14 @@ import { certificates } from "../../data/experience";
 export default function Certificates() {
   const getCertificateLink = (cert) => {
     if (cert.title === "Full Stack Web Internship") {
-      return "/Zenvyro_Labs_Certificate.pdf";
+      return "/images/Certificate_Muhammad_Asad.png";
     }
 
     if (cert.title === "Introduction to AI") {
       return "/images/intro-to-ai.pdf";
     }
 
-    if (
-      cert.title === "NAVTTC MERN Stack Development Training" ||
-      cert.title === "IT Specialist - JavaScript"
-    ) {
+    if (cert.title === "NAVTTC MERN Stack Development Training") {
       return "https://www.credly.com/badges/b3bb8039-fb18-49f9-a6c0-4164bd11f38a/public_url";
     }
 
@@ -29,10 +26,7 @@ export default function Certificates() {
       return "/images/Certificate_Muhammad_Asad.png";
     }
 
-    if (
-      cert.title === "NAVTTC MERN Stack Development Training" ||
-      cert.title === "IT Specialist - JavaScript"
-    ) {
+    if (cert.title === "NAVTTC MERN Stack Development Training") {
       return "/ITS-Badges_JavaScript.png";
     }
 
@@ -66,14 +60,8 @@ export default function Certificates() {
             return (
               <motion.article
                 key={cert.title}
-                initial={{
-                  opacity: 0,
-                  y: 24,
-                }}
-                whileInView={{
-                  opacity: 1,
-                  y: 0,
-                }}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{
                   once: true,
                   amount: 0.2,
@@ -82,9 +70,7 @@ export default function Certificates() {
                   duration: 0.5,
                   delay: i * 0.1,
                 }}
-                whileHover={{
-                  y: -6,
-                }}
+                whileHover={{ y: -6 }}
                 className="surface-card group flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 shadow-lg shadow-black/10 transition-all duration-300 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/10"
               >
                 {/* Certificate Preview */}
@@ -123,7 +109,7 @@ export default function Certificates() {
                       </div>
                     )}
 
-                    {/* Hover Preview Button */}
+                    {/* Hover Overlay */}
                     <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-[#08101d]/0 opacity-0 transition-all duration-300 group-hover:bg-[#08101d]/60 group-hover:opacity-100">
                       <span className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 font-mono text-xs font-medium text-[#101827] shadow-xl">
                         <FiExternalLink size={14} />

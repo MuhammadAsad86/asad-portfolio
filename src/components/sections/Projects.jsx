@@ -42,9 +42,7 @@ const ProjectCard = memo(function ProjectCard({ project, index }) {
   );
 
   useEffect(() => {
-    const touchDevice = window.matchMedia(
-      "(hover: none)"
-    ).matches;
+    const touchDevice = window.matchMedia("(hover: none)").matches;
 
     const reducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
@@ -73,7 +71,6 @@ const ProjectCard = memo(function ProjectCard({ project, index }) {
 
   const handleMouseLeave = () => {
     setHovered(false);
-
     mouseX.set(0);
     mouseY.set(0);
   };
@@ -111,14 +108,14 @@ const ProjectCard = memo(function ProjectCard({ project, index }) {
       }
       className="surface-card group flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 shadow-lg shadow-black/10 transition-all duration-300 hover:border-primary/30 hover:shadow-2xl hover:shadow-primary/10"
     >
-      {/* ===================== PROJECT IMAGE ===================== */}
+      {/* PROJECT IMAGE */}
 
       <div
         className="relative overflow-hidden bg-black/20 p-2"
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
       >
-        <div className="relative aspect-[16/8.5] overflow-hidden rounded-xl border border-white/10 bg-black/10">
+        <div className="relative aspect-[16/7.5] overflow-hidden rounded-xl border border-white/10 bg-black/10">
           <motion.img
             src={project.image}
             alt={`${project.title} project preview`}
@@ -130,8 +127,6 @@ const ProjectCard = memo(function ProjectCard({ project, index }) {
               duration: 0.4,
             }}
           />
-
-          {/* Live Preview Overlay, only on image hover */}
 
           <motion.div
             initial={false}
@@ -151,14 +146,14 @@ const ProjectCard = memo(function ProjectCard({ project, index }) {
                 href={project.live}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 font-mono text-xs font-medium text-[#101827] shadow-xl transition-transform hover:scale-105"
+                className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 font-mono text-[11px] font-medium text-[#101827] shadow-xl transition-transform hover:scale-105"
               >
-                <FiExternalLink size={14} />
+                <FiExternalLink size={13} />
                 Live Preview
               </a>
             ) : (
-              <div className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 font-mono text-xs font-medium text-[#101827] shadow-xl">
-                <FiExternalLink size={14} />
+              <div className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 font-mono text-[11px] font-medium text-[#101827] shadow-xl">
+                <FiExternalLink size={13} />
                 Preview
               </div>
             )}
@@ -166,41 +161,41 @@ const ProjectCard = memo(function ProjectCard({ project, index }) {
         </div>
       </div>
 
-      {/* ===================== CARD CONTENT ===================== */}
+      {/* CARD CONTENT */}
 
       <div className="flex flex-1 flex-col px-5 pb-4 pt-3">
-        {/* Title Row */}
+        {/* TITLE */}
 
         <div className="flex items-start justify-between gap-3">
           <div>
-            <p className="mb-1 font-mono text-[9px] uppercase tracking-[0.18em] text-primary/60">
+            <p className="mb-1 font-mono text-[8px] uppercase tracking-[0.16em] text-primary/60">
               Featured Project
             </p>
 
-            <h3 className="font-display text-xl font-semibold leading-tight">
+            <h3 className="font-display text-lg font-semibold leading-tight">
               {project.title}
             </h3>
           </div>
 
-          <span className="mt-1 shrink-0 rounded-full border border-primary/20 bg-primary/5 px-2.5 py-1 font-mono text-[9px] uppercase tracking-wide text-primary">
+          <span className="mt-1 shrink-0 rounded-full border border-primary/20 bg-primary/5 px-2 py-0.5 font-mono text-[8px] uppercase tracking-wide text-primary">
             {project.category}
           </span>
         </div>
 
-        {/* Description */}
+        {/* DESCRIPTION */}
 
-        <p className="mt-2 text-sm leading-6 text-muted">
+        <p className="mt-2 text-[13px] leading-5 text-muted">
           {project.description}
         </p>
 
-        {/* Features */}
+        {/* FEATURES */}
 
-        <div className="mt-4">
-          <div className="grid gap-2">
-            {project.features.slice(0, 3).map((feature) => (
+        <div className="mt-3">
+          <div className="grid gap-1.5">
+            {project.features.slice(0, 2).map((feature) => (
               <div
                 key={feature}
-                className="flex items-center gap-2 text-xs text-muted"
+                className="flex items-center gap-2 text-[11px] text-muted"
               >
                 <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-secondary" />
 
@@ -210,38 +205,38 @@ const ProjectCard = memo(function ProjectCard({ project, index }) {
           </div>
         </div>
 
-        {/* ===================== CARD FOOTER ===================== */}
+        {/* CARD FOOTER */}
 
-        <div className="mt-auto pt-5">
-          {/* Tech Stack */}
+        <div className="mt-auto pt-4">
+          {/* TECH STACK */}
 
-          <div className="flex flex-wrap gap-2 border-t border-white/10 pt-3">
-            {project.tech.slice(0, 6).map((technology) => (
+          <div className="flex flex-wrap gap-1.5 border-t border-white/10 pt-3">
+            {project.tech.slice(0, 5).map((technology) => (
               <span
                 key={technology}
-                className="rounded-lg border border-primary/15 bg-primary/5 px-2.5 py-1.5 font-mono text-[10px] text-primary"
+                className="rounded-md border border-primary/15 bg-primary/5 px-2 py-1 font-mono text-[9px] text-primary"
               >
                 {technology}
               </span>
             ))}
           </div>
 
-          {/* Actions */}
+          {/* ACTIONS */}
 
-          <div className="mt-3 grid grid-cols-2 gap-3 border-t border-white/10 pt-3">
+          <div className="mt-3 grid grid-cols-2 gap-2 border-t border-white/10 pt-3">
             {project.github ? (
               <a
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 px-4 py-2.5 font-mono text-xs font-medium transition-all duration-300 hover:border-primary/50 hover:bg-primary/5 hover:text-primary"
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 px-3 py-2 font-mono text-[11px] font-medium transition-all duration-300 hover:border-primary/50 hover:bg-primary/5 hover:text-primary"
               >
-                <FiGithub size={15} />
+                <FiGithub size={14} />
                 Code
               </a>
             ) : (
-              <div className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 px-4 py-2.5 font-mono text-xs text-muted opacity-40">
-                <FiGithub size={15} />
+              <div className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 px-3 py-2 font-mono text-[11px] text-muted opacity-40">
+                <FiGithub size={14} />
                 Code
               </div>
             )}
@@ -251,24 +246,24 @@ const ProjectCard = memo(function ProjectCard({ project, index }) {
                 href={project.live}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 font-mono text-xs font-semibold text-white shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl"
+                className="inline-flex items-center justify-center gap-2 rounded-xl px-3 py-2 font-mono text-[11px] font-semibold text-white shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl"
                 style={{
                   background:
                     "linear-gradient(135deg, #4F8CFF 0%, #22D3EE 100%)",
                 }}
               >
-                <FiArrowUpRight size={15} />
+                <FiArrowUpRight size={14} />
                 Live Demo
               </a>
             ) : (
               <div
-                className="inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 font-mono text-xs font-semibold text-white opacity-40"
+                className="inline-flex items-center justify-center gap-2 rounded-xl px-3 py-2 font-mono text-[11px] font-semibold text-white opacity-40"
                 style={{
                   background:
                     "linear-gradient(135deg, #4F8CFF 0%, #22D3EE 100%)",
                 }}
               >
-                <FiArrowUpRight size={15} />
+                <FiArrowUpRight size={14} />
                 Live Demo
               </div>
             )}
@@ -296,7 +291,7 @@ export default function Projects() {
           subtitle="A selection of projects showcasing my full-stack and frontend development work."
         />
 
-        <div className="grid gap-7 md:grid-cols-2 xl:grid-cols-3">
+        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
           {projects.map((project, index) => (
             <ProjectCard
               key={project.title}

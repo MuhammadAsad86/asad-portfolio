@@ -7,7 +7,6 @@ export const timeline = [
     description:
       "Completed a remote Full Stack Web Development internship focused on MERN stack development, building practical projects and improving full-stack development skills.",
   },
-
   {
     type: "experience",
     title: "Digital Content & Operations Intern",
@@ -16,7 +15,6 @@ export const timeline = [
     description:
       "Worked alongside developers in a professional software house, supporting web projects and gaining exposure to real world software development workflows.",
   },
-
   {
     type: "training",
     title: "NAVTTC MERN Stack Development Training",
@@ -25,7 +23,6 @@ export const timeline = [
     description:
       "Intensive hands-on training covering REST APIs, JWT authentication, Redux Toolkit and MVC architecture across the full MERN stack.",
   },
-
   {
     type: "education",
     title: "BS Information Technology",
@@ -42,13 +39,11 @@ export const certificates = [
     issuer: "Zenvyro Labs",
     duration: "Jul 2026 · Aug 2026",
   },
-
   {
     title: "NAVTTC MERN Stack Development Training",
     issuer: "NAVTTC",
     duration: "3 Months",
   },
-
   {
     title: "Introduction to AI",
     issuer: "Google · Coursera",
