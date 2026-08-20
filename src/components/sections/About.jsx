@@ -1,53 +1,100 @@
 import { motion } from "framer-motion";
-import { FiUser, FiAward, FiBriefcase } from "react-icons/fi";
+import { FiUser, FiAward, FiBriefcase, FiCode } from "react-icons/fi";
+
 import SectionHeading from "../ui/SectionHeading";
 import { stats } from "../../data/experience";
 import { useCountUp } from "../../hooks/useCountUp";
 
-
 function Stat({ label, value }) {
   const { ref, value: count } = useCountUp(value);
+
   return (
-    <div ref={ref} className="surface-card rounded-2xl p-5 text-center">
-      <div className="font-display font-bold text-3xl text-gradient">{count}+</div>
-      <div className="text-muted text-xs font-mono mt-1">{label}</div>
+    <div
+      ref={ref}
+      className="surface-card rounded-2xl border border-white/10 p-5 text-center transition-all duration-300 hover:-translate-y-1 hover:border-primary/30"
+    >
+      <div className="font-display text-3xl font-bold text-gradient">
+        {count}+
+      </div>
+
+      <div className="mt-1 font-mono text-xs text-muted">
+        {label}
+      </div>
     </div>
   );
 }
 
 const journey = [
-  { icon: FiUser, label: "BS Information Technology", sub: "MNS University, Multan" },
-  { icon: FiAward, label: "NAVTTC MERN Training", sub: "3 months, hands-on" },
-  { icon: FiBriefcase, label: "Operations Intern", sub: "Software house" },
-  { icon: FiUser, label: "Building & Shipping", sub: "Full-stack projects" },
+  {
+    icon: FiUser,
+    label: "BS Information Technology",
+    sub: "MNS University of Agriculture, Multan",
+  },
+  {
+    icon: FiAward,
+    label: "MERN Stack Development",
+    sub: "NAVTTC, 3 months hands-on training",
+  },
+  {
+    icon: FiBriefcase,
+    label: "Full Stack Web Internship",
+    sub: "Zenvyro Labs, remote internship",
+  },
+  {
+    icon: FiCode,
+    label: "Building Full-Stack Projects",
+    sub: "Designing, developing and shipping web applications",
+  },
 ];
 
-function JourneyTimeline() {
+function JourneyCards() {
   return (
-    <div className="mt-12">
-      <span className="font-mono text-xs text-muted block mb-5">My path so far</span>
-      <div className="grid sm:grid-cols-4 gap-4">
-        {journey.map((step, i) => (
-          <motion.div
-            key={step.label}
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.08, duration: 0.4 }}
-            className="relative flex sm:flex-col gap-3 sm:gap-4 items-start"
-          >
-            {i < journey.length - 1 && (
-              <span className="hidden sm:block absolute top-5 left-[calc(50%+22px)] right-[calc(-50%+22px)] h-px bg-white/10" />
-            )}
-            <span className="w-10 h-10 shrink-0 rounded-full grid place-items-center surface-card text-primary z-10">
-              <step.icon size={16} />
-            </span>
-            <div>
-              <div className="font-medium text-sm leading-snug">{step.label}</div>
-              <div className="font-mono text-[11px] text-muted mt-1">{step.sub}</div>
-            </div>
-          </motion.div>
-        ))}
+    <div className="mt-14">
+      <div className="mb-6 flex items-center gap-4">
+        <span className="h-px w-8 bg-primary/50" />
+
+        <span className="font-mono text-xs uppercase tracking-[0.25em] text-secondary">
+          My Journey So Far
+        </span>
+      </div>
+
+      <div className="grid gap-5 md:grid-cols-2">
+        {journey.map((step, i) => {
+          const Icon = step.icon;
+
+          return (
+            <motion.div
+              key={step.label}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{
+                duration: 0.45,
+                delay: i * 0.08,
+              }}
+              whileHover={{ y: -5 }}
+              className="surface-card group relative overflow-hidden rounded-2xl border border-white/10 p-6 transition-all duration-300 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/10"
+            >
+              <div className="flex items-start gap-5">
+                <div className="grid h-12 w-12 shrink-0 place-items-center rounded-xl border border-primary/20 bg-primary/5 text-primary transition-transform duration-300 group-hover:scale-110">
+                  <Icon size={20} />
+                </div>
+
+                <div className="min-w-0">
+                  <h3 className="font-display text-[15px] font-semibold leading-snug">
+                    {step.label}
+                  </h3>
+
+                  <p className="mt-2 font-mono text-xs leading-relaxed text-muted">
+                    {step.sub}
+                  </p>
+                </div>
+              </div>
+
+              <span className="absolute bottom-0 left-0 h-[2px] w-0 bg-gradient-to-r from-primary to-secondary transition-all duration-500 group-hover:w-full" />
+            </motion.div>
+          );
+        })}
       </div>
     </div>
   );
@@ -55,56 +102,66 @@ function JourneyTimeline() {
 
 export default function About() {
   return (
-    <section id="about" className="py-28" aria-labelledby="about-heading">
+    <section
+      id="about"
+      className="py-24 md:py-28"
+      aria-labelledby="about-heading"
+    >
       <div className="section-container">
-        <SectionHeading eyebrow="01 · About" title="A little about my journey" headingId="about-heading" />
+        <SectionHeading
+          eyebrow="01 · About"
+          title="A little about my journey"
+          headingId="about-heading"
+        />
 
-        <div className="max-w-2xl mx-auto text-center">
-          <div>
+        <div className="mx-auto max-w-4xl">
+          <div className="text-center">
             <motion.p
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-muted text-[15.5px] leading-relaxed"
+              className="text-[15.5px] leading-relaxed text-muted"
             >
-              I'm a MERN Stack Developer and BS Information Technology student (6th
-              semester) at MNS University of Agriculture, Multan. My focus is building
-              complete web applications end to end — from a MongoDB schema, through an
-              Express API, to a polished React interface.
+              I'm a MERN Stack Developer and BS Information Technology student
+              in my 6th semester at MNS University of Agriculture, Multan. My
+              focus is building complete web applications from end to end, from
+              MongoDB databases and Express APIs to polished React interfaces.
             </motion.p>
+
             <motion.p
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="text-muted text-[15.5px] leading-relaxed mt-4"
+              className="mt-4 text-[15.5px] leading-relaxed text-muted"
             >
-              Three months in NAVTTC's MERN Stack Development program gave me real,
-              hands-on practice with JWT authentication, protected routing, Redux
-              Toolkit state management and MVC architecture. I also spent time as a
-              Digital Content &amp; Operations Intern at a professional software house,
-              supporting cross-functional operational workflows.
+              Through NAVTTC's MERN Stack Development program, I gained
+              hands-on experience with REST APIs, JWT authentication, protected
+              routes, Redux Toolkit and MVC architecture. I also completed a
+              Full Stack Web Internship at Zenvyro Labs, where I continued
+              building practical development experience.
             </motion.p>
+
             <motion.p
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="text-muted text-[15.5px] leading-relaxed mt-4"
+              className="mt-4 text-[15.5px] leading-relaxed text-muted"
             >
-              My goal is simple: keep shipping responsive, user-friendly, scalable
-              products, and grow into a full-stack role where I can own features from
-              database to deployment.
+              My goal is to keep building responsive, user-friendly and
+              scalable products while growing into a full-stack developer who
+              can take features from database design to deployment.
             </motion.p>
-
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-10">
-              {stats.map((s) => (
-                <Stat key={s.label} {...s} />
-              ))}
-            </div>
-
-            <JourneyTimeline />
           </div>
+
+          <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4">
+            {stats.map((s) => (
+              <Stat key={s.label} {...s} />
+            ))}
+          </div>
+
+          <JourneyCards />
         </div>
       </div>
     </section>
