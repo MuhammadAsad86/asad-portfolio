@@ -60,7 +60,7 @@ export const projects = [
     ],
     image: "/images/mern-blog.png",
     github: "https://github.com/MuhammadAsad86/mern-blog",
-    live: "https://mern-blog-d9wm.vercel.app",
+    live: "https://mern-blog-theta-lilac.vercel.app/",
   },
 
   {
